@@ -13,3 +13,4 @@ This project provides two Azure Functions to copy blob metadata from Azure Blob 
     "FUNCTIONS_WORKER_RUNTIME": "python",
     "AzureBlobStorageConnectionString" : # Storage account connection string for blob metadata reading
     "TableName": "droptable" # Table Storage name for dropping metadata from blob
+    "CopyMetadata": # set to "1" if you want to copy Blob Metadata in the event-based function (BlobToTable)

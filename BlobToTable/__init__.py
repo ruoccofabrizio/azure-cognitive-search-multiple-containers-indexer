@@ -4,6 +4,7 @@ import os
 
 import azure.functions as func
 from azure.data.tables import TableServiceClient
+from azure.storage.blob import BlobClient
 
 
 def main(event: func.EventGridEvent):
@@ -28,4 +29,10 @@ def main(event: func.EventGridEvent):
             "RowKey": row_key,
             "Url": data['url']
         }
+        if int(os.environ.get('CopyMetadata', 0)) == 1:
+            blob = BlobClient.from_connection_string(conn_str=connection_string, container_name=partition_key, blob_name=row_key)
+            metadata = blob.get_blob_properties()['metadata']
+            if metadata != None:
+                for key, value in metadata.items():
+                    entity[key] = value
         table_client.upsert_entity(entity=entity)
