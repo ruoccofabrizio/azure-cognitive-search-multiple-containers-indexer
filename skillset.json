@@ -1,0 +1,86 @@
+{
+    "@odata.context": "https://fruocco.search.windows.net/$metadata#skillsets/$entity",
+    "@odata.etag": "\"0x8DA22A3591E14FF\"",
+    "name": "azuretable-skillset",
+    "description": "Skillset created from the portal. skillsetName: azuretable-skillset; contentField: PartitionKey; enrichmentGranularity: document; knowledgeStoreStorageAccount: ;",
+    "skills": [
+      {
+        "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+        "name": "Generate SAS",
+        "description": "",
+        "context": "/document",
+        "uri": "https://YOUR_FUNCTION_URL/api/GenerateBlobSASToken",
+        "httpMethod": "POST",
+        "timeout": "PT30S",
+        "batchSize": 1,
+        "degreeOfParallelism": 1,
+        "inputs": [
+          {
+            "name": "blob_url",
+            "source": "/document/Url"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "file_data",
+            "targetName": "file_data"
+          }
+        ],
+        "httpHeaders": {}
+      },
+      {
+        "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
+        "name": "Document Cracking",
+        "description": "",
+        "context": "/document",
+        "parsingMode": "default",
+        "dataToExtract": "contentAndMetadata",
+        "inputs": [
+          {
+            "name": "file_data",
+            "source": "/document/file_data"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "content",
+            "targetName": "content"
+          },
+          {
+            "name": "normalized_images",
+            "targetName": "normalized_images"
+          }
+        ],
+        "configuration": {
+          "imageAction": "generateNormalizedImages"
+        }
+      },
+      {
+        "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+        "name": "#1",
+        "description": null,
+        "context": "/document/PartitionKey",
+        "defaultLanguageCode": "en",
+        "maxKeyPhraseCount": null,
+        "modelVersion": null,
+        "inputs": [
+          {
+            "name": "text",
+            "source": "/document/content"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "keyPhrases",
+            "targetName": "keyphrases"
+          }
+        ]
+      }
+    ],
+    "cognitiveServices": {
+      "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+      "key": "YOUR_COGNITIVE_SERVICES_KEY"
+    },
+    "knowledgeStore": null,
+    "encryptionKey": null
+  }
