@@ -1,0 +1,17 @@
+{
+    "name": "azuretable",
+    "description": null,
+    "type": "azuretable",
+    "subtype": null,
+    "credentials": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=...;AccountKey=..."
+    },
+    "container": {
+      "name": "YOUR_TABLE",
+      "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null,
+    "encryptionKey": null,
+    "identity": null
+  }

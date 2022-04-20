@@ -1,0 +1,34 @@
+{
+    "name": "azuretable-indexer",
+    "description": "",
+    "dataSourceName": "azuretable",
+    "skillsetName": "azuretable-skillset",
+    "targetIndexName": "azuretable-index",
+    "disabled": null,
+    "schedule": null,
+    "parameters": {
+      "batchSize": null,
+      "maxFailedItems": 0,
+      "maxFailedItemsPerBatch": 0,
+      "base64EncodeKeys": null,
+      "configuration": {}
+    },
+    "fieldMappings": [
+      {
+        "sourceFieldName": "Key",
+        "targetFieldName": "Key",
+        "mappingFunction": {
+          "name": "base64Encode",
+          "parameters": null
+        }
+      }
+    ],
+    "outputFieldMappings": [
+      {
+        "sourceFieldName": "/document/PartitionKey/keyphrases",
+        "targetFieldName": "keyphrases"
+      }
+    ],
+    "cache": null,
+    "encryptionKey": null
+  }

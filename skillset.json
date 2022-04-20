@@ -1,6 +1,4 @@
 {
-    "@odata.context": "https://fruocco.search.windows.net/$metadata#skillsets/$entity",
-    "@odata.etag": "\"0x8DA22A3591E14FF\"",
     "name": "azuretable-skillset",
     "description": "Skillset created from the portal. skillsetName: azuretable-skillset; contentField: PartitionKey; enrichmentGranularity: document; knowledgeStoreStorageAccount: ;",
     "skills": [
