@@ -6,7 +6,7 @@ This repo provides an example on how to index multiple [Azure Blob Storage](http
 Logical components:
 -   Generate SAS: Azure Functions to [generate a SAS token](https://docs.microsoft.com/en-us/python/api/azure-storage-blob/azure.storage.blob?view=azure-python) from an Azure Blob URL. It returns a file reference accordingly to Document Extraction skill format
 -   Document Cracking: Uses the Azure Cognitive Search [Document Extraction skill](https://docs.microsoft.com/en-us/azure/search/cognitive-search-skill-document-extraction) to crack different [supported document formats](https://docs.microsoft.com/en-us/azure/search/cognitive-search-skill-document-extraction#supported-document-formats)
--   [Key Phrase Extraction](https://docs.microsoft.com/en-us/azure/search/cognitive-search-skill-keyphrases): A skill that uses the text extracted by the Document Cracking skill. You can add any other [pre-builthttps://docs.microsoft.com/en-us/azure/search/cognitive-search-predefined-skills] or [custom skill](https://docs.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api) here
+-   [Key Phrase Extraction](https://docs.microsoft.com/en-us/azure/search/cognitive-search-skill-keyphrases): A skill that uses the text extracted by the Document Cracking skill. You can add any other [pre-built](https://docs.microsoft.com/en-us/azure/search/cognitive-search-predefined-skills) or [custom skill](https://docs.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api) here
 
 Azure Cognitive Search assets:
 -   [Data Source](./datasource.json)
